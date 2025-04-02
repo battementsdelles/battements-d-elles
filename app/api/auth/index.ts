@@ -1,3 +1,4 @@
+import { getUserRepository } from '@/app/helpers/typeorm/datasrc';
 import NextAuth, { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -33,6 +34,9 @@ export const authOptions: NextAuthConfig = {
     CredentialsProvider({
       async authorize(credentials) {
         let user = null;
+        const userRepo = await getUserRepository();
+        const users = await userRepo.find();
+        console.log({ users });
         try {
           user = getUserByEmail(credentials?.email as string);
         } catch (error) {
@@ -55,6 +59,7 @@ export const authOptions: NextAuthConfig = {
       return { ...session, token };
     },
   },
+  trustHost: true,
 };
 
 export const { auth, signIn, signOut, handlers } = NextAuth(authOptions);
