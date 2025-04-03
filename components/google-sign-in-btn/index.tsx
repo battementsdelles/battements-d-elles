@@ -1,4 +1,4 @@
-import { googleSignIn } from '@/app/actions/auth';
+import { googleSignIn } from '@/lib/actions/auth';
 import React from 'react';
 
 const GoogleSignInBtn = () => {

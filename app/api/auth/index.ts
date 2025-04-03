@@ -1,21 +1,9 @@
-import { getUserRepository } from '@/app/helpers/typeorm/datasrc';
+import { getUserRepository } from '@/lib/helpers/typeorm/datasrc';
+import { ILoginDto } from '@/lib/helpers/zod/schemas/auth';
+import * as bcrypt from 'bcrypt';
 import NextAuth, { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-
-const users = [
-  {
-    email: 'mehdicheref@gmail.com',
-    password: '%PitchouX',
-  },
-  {
-    email: 'mehdi@gmail.com',
-    password: 'cdsdgdsfds',
-  },
-];
-
-const getUserByEmail = (email: string = '') =>
-  users.find((em) => em.email === email);
 
 export const authOptions: NextAuthConfig = {
   // Configure one or more authentication providers
@@ -33,18 +21,22 @@ export const authOptions: NextAuthConfig = {
     }),
     CredentialsProvider({
       async authorize(credentials) {
+        const { email, password } = credentials as ILoginDto;
         let user = null;
-        const userRepo = await getUserRepository();
-        const users = await userRepo.find();
-        console.log({ users });
+
         try {
-          user = getUserByEmail(credentials?.email as string);
+          const [UserRepository] = await getUserRepository();
+          user = await UserRepository.findOne({
+            where: { email },
+          });
+
+          if (!user || !bcrypt.compareSync(password, user.password)) {
+            return null;
+          }
         } catch (error) {
           return null;
         }
-        if (!user || credentials.password !== user.password) {
-          return null;
-        }
+
         return user;
       },
     }),

@@ -1,5 +1,5 @@
 'use client';
-import { CustomError } from '@/app/helpers/custom-error';
+import { CustomError } from '@/lib/helpers/custom-error';
 import classNames from 'classnames';
 import React from 'react';
 import { Control, Controller } from 'react-hook-form';
