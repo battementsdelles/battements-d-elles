@@ -21,7 +21,10 @@ export class CustomError {
 
   toString = () => JSON.stringify(this);
 
-  static apiCustomError = (obj: ICustomError): IApiCustomError => {
+  static apiCustomError = (
+    obj: ICustomError | undefined,
+  ): IApiCustomError | undefined => {
+    if (!obj) return obj;
     return { customError: new CustomError(obj) };
   };
 

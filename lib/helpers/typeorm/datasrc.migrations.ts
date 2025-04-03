@@ -5,9 +5,9 @@ const dataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
   ssl: true,
-  entities: ['./app/api/**/*.entity.{ts,js}'],
-  migrations: ['./app/helpers/typeorm/migrations/*.{ts,js}'],
-  migrationsRun: false,
+  entities: ['./lib/helpers/typeorm/entities/*.entity.ts'],
+  migrations: ['./lib/helpers/typeorm/migrations/*.ts'],
+  migrationsRun: true,
   synchronize: false,
   logging: true,
 });

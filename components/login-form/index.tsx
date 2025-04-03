@@ -1,9 +1,10 @@
 'use client';
-import { credentialsSignIn } from '@/app/actions/auth';
-import CustomInput from '@/app/components/controlled-input';
-import { CustomError } from '@/app/helpers/custom-error';
-import { ILoginDto, LoginSchema } from '@/app/helpers/zod/schemas/auth';
+import CustomInput from '@/components/controlled-input';
+import { credentialsSignIn } from '@/lib/actions/auth';
+import { CustomError } from '@/lib/helpers/custom-error';
+import { ILoginDto, LoginSchema } from '@/lib/helpers/zod/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -134,9 +135,9 @@ export function LoginForm() {
             {/* Sign-Up Link */}
             <p className="text-center text-sm">
               Don't have an account?{' '}
-              <a href="#" className="text-primary hover:text-accent">
+              <Link href="/register" className="text-primary hover:text-accent">
                 Sign up
-              </a>
+              </Link>
             </p>
           </form>
         </div>
