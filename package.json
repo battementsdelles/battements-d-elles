@@ -11,9 +11,10 @@
     "build": "next build",
     "start": "next start",
     "clean:install": "npx rimraf node_modules/ && npm i",
-    "typeorm:cli": "npx ts-node --project tsconfig.orm.json ./node_modules/typeorm/cli.js -d ./lib/helpers/typeorm/datasrc.migrations.ts",
-    "migration:create": "npx ts-node --project tsconfig.orm.json ./node_modules/typeorm/cli.js migration:create ./lib/helpers/typeorm/migrations/new",
-    "migration:generate": "npm run typeorm:cli migration:generate ./lib/helpers/typeorm/migrations/update",
+    "tunnel": "ngrok start --config=ngrok.yml --all --log=stdout",
+    "typeorm:cli": "npx ts-node --project tsconfig.orm.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./lib/typeorm/datasrc.migrations.ts",
+    "migration:create": "npx ts-node --project tsconfig.orm.json ./node_modules/typeorm/cli.js migration:create ./lib/typeorm/migrations/new",
+    "migration:generate": "npm run typeorm:cli migration:generate ./lib/typeorm/migrations/update",
     "migration:run": "npm run typeorm:cli migration:run",
     "migration:revert": "npm run typeorm:cli migration:revert",
     "schema:log": "npm run typeorm:cli schema:log"
@@ -21,8 +22,10 @@
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
     "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
     "classnames": "^2.5.1",
     "daisyui": "^5.0.9",
+    "jsonwebtoken": "^9.0.2",
     "next": "15.2.4",
     "next-auth": "^5.0.0-beta.25",
     "pg": "^8.14.1",
@@ -39,6 +42,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -46,9 +50,11 @@
     "eslint-config-next": "15.2.4",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
+    "ngrok": "^5.0.0-beta.2",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5"
   }
 }
