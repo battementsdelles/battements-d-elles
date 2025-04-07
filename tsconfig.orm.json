@@ -13,5 +13,5 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["./app/helpers/typeorm/**/*.ts", "./app/api/**/*.ts"]
+  "include": ["./lib/typeorm/**/*.ts"]
 }

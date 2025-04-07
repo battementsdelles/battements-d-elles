@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { CustomError } from '../custom-error';
+import { CustomError } from '../helpers/custom-error';
 
 const required = z
   .string({

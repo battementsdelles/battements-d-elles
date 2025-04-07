@@ -29,13 +29,13 @@ const ControlledInput: React.FC<ControlledInputProps> = ({
   const [showText, setShowText] = React.useState(!secureText);
   const inputClassNames = classNames({
     input: true,
-    'input-error mb-0': !!customError,
+    'input-error mb-0': customError?.path === name,
   });
 
   const labelClassNames = classNames({
     label: embeddedLabel,
     'block text-sm font-medium mb-1': !embeddedLabel,
-    'text-error': !!customError,
+    'text-error': customError?.path === name,
   });
 
   const SvgEye = ({ open = true }) => (
@@ -85,7 +85,7 @@ const ControlledInput: React.FC<ControlledInputProps> = ({
               />
               {secureText && <SvgEye open={!showText} />}
             </label>
-            {customError && (
+            {customError && customError.path === name && (
               <div className="text-xs text-error mt-1 ml-2">
                 {customError.details}
               </div>

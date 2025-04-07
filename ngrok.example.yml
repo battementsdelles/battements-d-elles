@@ -1,0 +1,6 @@
+version: '2'
+authtoken: get token from ngrok.com
+tunnels:
+  app:
+    proto: http
+    addr: 3000

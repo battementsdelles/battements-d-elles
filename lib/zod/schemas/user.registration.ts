@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { CustomError } from '../../custom-error';
+import { CustomError } from '../../helpers/custom-error';
 import { zodCommonAttributes } from '../common-attributes';
 
 const { email, password, username, required } = zodCommonAttributes;

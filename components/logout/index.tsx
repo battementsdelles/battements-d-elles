@@ -6,8 +6,8 @@ import { redirect } from 'next/navigation';
 
 const LogOut = async () => {
   const session = await auth();
+  if (session === null || session.error) redirect('/login');
 
-  if (session === null) redirect('/login');
   return (
     <>
       {session?.user && (

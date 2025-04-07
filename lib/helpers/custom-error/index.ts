@@ -64,3 +64,18 @@ export class CustomError {
     throw new Error('The parsed object does not match the CustomError type');
   }
 }
+
+export const DB_CONNECTION_ERROR: ICustomError = {
+  details: 'DataBase Connection Failed! Please retry later',
+  code: 'DB_CONNECTION_ERROR',
+};
+
+export const REFRESH_ACCESS_TOKEN_ERROR: ICustomError = {
+  details: 'Your session has expired. Please sign in again.',
+  code: 'REFRESH_ACCESS_TOKEN_ERROR',
+};
+
+export const USER_NOT_FOUND_IN_DB: ICustomError = {
+  details: 'User Not Found in Data base! Please contact your administrator.',
+  code: 'USER_NOT_FOUND_IN_DB',
+};
